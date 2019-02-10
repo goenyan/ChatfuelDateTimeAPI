@@ -12,7 +12,12 @@ app.get('/', function(request, response) {
 app.post('/attributes/reset', (request, response) => {
   const keyNames = Object.keys(request.body);
   
-  response.json({keyNames});
+  let attributes = {};
+  keyNames.forEach(keyName => {
+    attributes[keyName] = null;
+  });
+  
+  response.json({set_attributes: attributes});
 });
 
 // Start the server and listen for incoming requests
