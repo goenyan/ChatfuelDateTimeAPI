@@ -2,7 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+const webviewRoutes = require('./routes/webviews');
+
 app.use(bodyParser.urlencoded({extended: false}));
+
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 // GET endpoint
 app.get('/', function(request, response) {
@@ -19,6 +24,8 @@ app.post('/attributes/reset', (request, response) => {
   
   response.json({set_attributes: attributes});
 });
+
+app.use('/webviews', webviewRoutes);
 
 // Start the server and listen for incoming requests
 const listener = app.listen(process.env.PORT, function() {
