@@ -59,7 +59,7 @@ html
                 const formData = $('#preferencesForm').serialize();
 
                 // Post to our server endpoint to broadcast back to the user
-                $.post('/dynamic-webview-new', formData, (data) => {
+                $.post('/webviews/submit-webview', formData, (data) => {
                     MessengerExtensions.requestCloseBrowser(function success() {
                         // webview closed
                         console.log('Closed the window!');

@@ -1,4 +1,5 @@
 const express = require('express');
+const chatfuelBroadcast = require('chatfuel-broadcast');
 
 const router = express.Router();
 
@@ -56,6 +57,34 @@ router.get('/show-webview', (request, response) => {
   const {userId, blockName} = request.query;
   
   response.render('showWebview', {pageTitle: 'This is my page', userId, blockName});
+});
+
+router.post('/submit-webview', (request, response) => {
+  const botId = process.env.CHATFUEL_BOT_ID;
+  const chatfuelToken = process.env.CHATFUEL_BROADCAST_TOKEN;
+  
+  // Get user id and block name from request.body
+  const {userId, blockName} = request.body;
+  
+  const options = {
+    botId,
+    token: chatfuelToken,
+    userId,
+    blockId: blockName,
+    attributes: request.body
+  };
+  
+  console.log(options);
+  
+  chatfuelBroadcast(options)
+    .then(() => {
+      response.json({});
+    })
+    .catch(error => {
+      console.log(error.statusCode);
+      console.log(error);
+      response.json({});
+    });
 });
 
 
