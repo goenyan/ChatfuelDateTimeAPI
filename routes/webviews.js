@@ -1,5 +1,5 @@
 const express = require('express');
-const chatfuelBroadcast = require('chatfuel-broadcast');
+const chatfuelBroadcast = require('chatfuel-broadcast').default;
 
 const router = express.Router();
 
@@ -70,12 +70,10 @@ router.post('/submit-webview', (request, response) => {
     botId,
     token: chatfuelToken,
     userId,
-    blockId: blockName,
+    blockName,
     attributes: request.body
   };
-  
-  console.log(options);
-  
+    
   chatfuelBroadcast(options)
     .then(() => {
       response.json({});

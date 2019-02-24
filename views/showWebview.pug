@@ -72,5 +72,13 @@ html
                 });
             });
         };
+        
+        window.addEventListener('unload', () => {
+          console.log('Unload');
+        });
+
+        window.addEventListener('beforeunload', () => {
+          console.log('Before unload');
+        });
 
     
