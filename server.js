@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const webviewRoutes = require('./routes/webviews');
+const verificationRoutes = require('./routes/verification');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -26,6 +27,8 @@ app.post('/attributes/reset', (request, response) => {
 });
 
 app.use('/webviews', webviewRoutes);
+
+app.use('/verify', verificationRoutes);
 
 // Start the server and listen for incoming requests
 const listener = app.listen(process.env.PORT, function() {
