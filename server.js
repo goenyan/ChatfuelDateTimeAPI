@@ -28,6 +28,7 @@ app.post('/attributes/reset', (request, response) => {
 
 app.use('/webviews', webviewRoutes);
 
+// Add verification routes
 app.use('/verify', verificationRoutes);
 
 // Start the server and listen for incoming requests
