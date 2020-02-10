@@ -18,13 +18,17 @@ router.get('/', (request, response) => {
   const userDateInTimezone = getUserDateInTimezone(timezone);
   
   const dateObject = {
-    day: date.getDate()
+    day: userDateInTimezone.getDate(),
+    month: userDateInTimezone.getMonth() + 1,
+    year: userDateInTimezone.getFullYear(),
+    hours: userDateInTimezone.getHours(),
+    minutes: userDateInTimezone.getMinutes(),
+    seconds: userDateInTimezone.getSeconds(),
+    isoTime: userDateInTimezone.toISOString()
   };
-  
+    
   const userAttributes = {
-    set_attributes: {
-      userDate: userDateInTimezone
-    }
+    set_attributes: dateObject
   };
   
   response.json(userAttributes);
