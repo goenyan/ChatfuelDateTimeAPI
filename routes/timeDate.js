@@ -24,6 +24,7 @@ router.get('/', (request, response) => {
     hours: userDateInTimezone.getHours(),
     minutes: userDateInTimezone.getMinutes(),
     seconds: userDateInTimezone.getSeconds(),
+    dayOfWeek: userDateInTimezone.getDay(),
     isoTime: userDateInTimezone.toISOString()
   };
     
